@@ -42,7 +42,7 @@ app.post('/', async function (req, res) {
     let {custom_url, url } = req.body
 
     short = utils.makeShortUrl()
-    if (custom_url != undefined) {
+    if (custom_url != "") {
         short = custom_url
     }
     const obj = {
@@ -57,12 +57,23 @@ app.post('/', async function (req, res) {
         }
     })
 
-    if (web != null) {
+    // console.log(custom_url)
+    if (!utils.isValidUrl(url)) {
         return res.status(402).json({
             "status": false,
-            "message": "Short URL already exists !. Please change to another word",
+            "message": "URL Not valid!",
         });
     }
+
+    if (custom_url != "") {
+        if (web != null) {
+            return res.status(402).json({
+                "status": false,
+                "message": "Short URL already exists !. Please change to another word",
+            });
+        }
+    }
+
 
     sequelize.sync().then(async () => {
         Urls.create(obj)
