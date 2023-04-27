@@ -17,7 +17,112 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.0/examples/cover/cover.css" rel="stylesheet">
+    <style>
+        /* Links */
+        a,
+        a:focus,
+        a:hover {
+            color: #fff;
+        }
+
+        /* Custom default button */
+        .btn-secondary,
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            color: #333;
+            text-shadow: none;
+            /* Prevent inheritance from `body` */
+            background-color: #fff;
+            border: .05rem solid #fff;
+        }
+
+        html,
+        body {
+            /* height: 100%; */
+            background-color: #333;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -ms-flex-pack: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+            box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+        }
+
+        .cover-container {
+            max-width: 42em;
+        }
+
+
+        /*
+ * Header
+ */
+        .masthead {
+            margin-bottom: 2rem;
+        }
+
+        .masthead-brand {
+            margin-bottom: 0;
+        }
+
+        .nav-masthead .nav-link {
+            padding: .25rem 0;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .5);
+            background-color: transparent;
+            border-bottom: .25rem solid transparent;
+        }
+
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+            border-bottom-color: rgba(255, 255, 255, .25);
+        }
+
+        .nav-masthead .nav-link+.nav-link {
+            margin-left: 1rem;
+        }
+
+        .nav-masthead .active {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        @media (min-width: 48em) {
+            .masthead-brand {
+                float: left;
+            }
+
+            .nav-masthead {
+                float: right;
+            }
+        }
+
+
+        /*
+ * Cover
+ */
+        .cover {
+            padding: 0 1.5rem;
+        }
+
+        .cover .btn-lg {
+            padding: .75rem 1.25rem;
+            font-weight: 700;
+        }
+
+
+        /*
+ * Footer
+ */
+        .mastfoot {
+            color: rgba(255, 255, 255, .5);
+        }
+    </style>
 </head>
 
 <body>
@@ -25,7 +130,9 @@
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto text-center">
             <div class="inner text-center">
-                <center><h3>She has Short Hair</h3></center>
+                <center>
+                    <h3>She has Short Hair</h3>
+                </center>
             </div>
         </header>
 
@@ -59,7 +166,8 @@
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Developed with 💔, by <a href="https://www.instagram.com/your.online.clown/">@your.online.clown</a>.</p>
+                <p>Developed with 💔, by <a href="https://www.instagram.com/your.online.clown/">@your.online.clown</a>.
+                </p>
             </div>
         </footer>
     </div>
@@ -79,10 +187,11 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('#form-url').on('submit', function(e) {
+        $('#form-url').on('submit', function (e) {
             e.preventDefault()
 
             $.ajax({
@@ -91,7 +200,7 @@
                 data: $(this).serialize(),
                 dataType: "json",
                 statusCode: {
-                    402: function(res) {
+                    402: function (res) {
                         let r = JSON.parse(res.responseText)
                         Swal.fire({
                             icon: 'error',
@@ -102,19 +211,19 @@
                 },
                 success: function (data) {
                     let res = data.data
-                    
+
                     $('.canvas-result').show()
                     $('#txt-res-url').val("https://s.he-left.me/r/" + res.short)
                     $('.canvas-custom').hide()
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     console.log(textStatus);
                     console.log(errorThrown);
                 }
             });
         })
 
-        $('#exampleCheck1').click(function() {
+        $('#exampleCheck1').click(function () {
             c = $(this).is(':checked')
 
             if (c) {
